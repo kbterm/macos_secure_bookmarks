@@ -44,7 +44,7 @@ public class SecureBookmarksPlugin: NSObject, FlutterPlugin {
       print("need bookmark for \(url)")
       // create app scope security bookmark.
       do {
-        let data = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+        let data = try url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess], includingResourceValuesForKeys: nil, relativeTo: nil)
         result(data.base64EncodedString())
       } catch {
         result(FlutterError(code: "UnexpectedError", message: "Error while creating bookmark \(error) for \(url)", details: nil))
